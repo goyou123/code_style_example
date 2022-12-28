@@ -2,7 +2,7 @@ import React from "react"
 import { Route, Routes } from "react-router-dom"
 
 import CartPage from "pages/CartPage"
-import ProductsPage from "pages/ProductsPage"
+import ProductsPage from "pages/ProductPage/ProductsPage"
 import ErrorPage from "pages/ErrorPage"
 
 export interface RouteType {

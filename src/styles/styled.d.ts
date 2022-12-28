@@ -13,6 +13,7 @@ declare module "styled-components" {
             white: string
             black: string
             text: string
+            gray: string
         }
 
         fonts: {
@@ -23,6 +24,9 @@ declare module "styled-components" {
             f20: string
             f24: string
             f26: string
+            f28: string
+            f30: string
+            f34: string
         }
     }
 }

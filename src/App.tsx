@@ -1,7 +1,7 @@
 import React from "react"
 
 //component
-import DefaultLayout from "layout/DefaultLayout"
+import DefaultLayout from "layout/DefaultLayout/DefaultLayout"
 
 function App() {
     return (

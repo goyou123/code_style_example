@@ -9,6 +9,9 @@ const fonts = {
     f20: "2.0rem",
     f24: "2.4rem",
     f26: "2.6rem",
+    f28: "2.8rem",
+    f30: "3.0rem",
+    f34: "3.4rem",
 }
 
 /* 공통으로 사용되는 color 정의 */
@@ -16,6 +19,7 @@ const colors = {
     transparent: "transparent",
     white: "#FFFFFF",
     black: "#000000",
+    gray: "#EEEEEE",
 }
 
 /* 라이트 모드에서만 사용되는 color 정의 */
