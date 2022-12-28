@@ -22,8 +22,7 @@ export const ProductPageDiv = styled.div`
 
             .pagination {
                 text-align: center;
-                height: 60px;
-                line-height: 60px;
+                margin-top: 100px;
             }
         `
     }}
