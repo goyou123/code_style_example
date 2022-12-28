@@ -39,7 +39,7 @@ function ProductsPage() {
             <div>
                 <h2>상품목록</h2>
                 <p>
-                    총 <span>12</span>개 상품이 있습니다.
+                    총 <span>{productItems.length}</span>개 상품이 있습니다.
                 </p>
                 <Container>
                     {productArray.map((p) => {

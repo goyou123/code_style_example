@@ -3,11 +3,13 @@ import { H2 } from "styles/OftenStyle"
 
 export const ProductPageDiv = styled.div`
     ${({ theme }) => {
-        const { colors, fonts } = theme
+        const { fonts } = theme
         return css`
             width: 70%;
             margin: 0 auto;
+            padding: 70px 0 0 0;
 
+            // 페이지 소제목 & 상품 수
             h2 {
                 ${H2}
             }
@@ -20,9 +22,10 @@ export const ProductPageDiv = styled.div`
                 }
             }
 
+            // 페이지네이션 배치
             .pagination {
                 text-align: center;
-                margin-top: 100px;
+                margin: 50px 0;
             }
         `
     }}
@@ -30,6 +33,5 @@ export const ProductPageDiv = styled.div`
 export const Container = styled.div`
     display: grid;
     grid-gap: 8px;
-    grid-template-columns: repeat(5, 1fr);
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(240px, auto));
 `

@@ -1,7 +1,8 @@
 import React from "react"
-
+import { moneyFormat } from "lib/utils"
 //css
 import { ProductCardDiv } from "components/ProductCard/ProductCard.style"
+
 interface IProps {
     product: {
         item_no: number
@@ -14,8 +15,6 @@ interface IProps {
 }
 
 function ProductCard({ product }: IProps) {
-    // let result = price.toLocaleString("ko-KR")
-    // console.log(result)
     return (
         <ProductCardDiv>
             <div className="product-img">
@@ -23,11 +22,8 @@ function ProductCard({ product }: IProps) {
             </div>
             <div className="product-info">
                 <div>
-                    <h3 title={product.item_name}>
-                        {/* 위키오 3in1 거치대형 무선충전기 아이폰, 갤럭시, 스마트워치, 무선이어폰 동시충전 */}
-                        {product.item_name}
-                    </h3>
-                    <p>20000원</p>
+                    <h3 title={product.item_name}>{product.item_name}</h3>
+                    <p>{moneyFormat(product.price)}</p>
                 </div>
 
                 {/* TODO : 컴포넌트로 분리? */}

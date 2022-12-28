@@ -37,7 +37,8 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Roboto', 'Noto Sans KR', sans-serif;
     font-weight: 400;
-    overflow: hidden;
+    overflow: auto;
+    
 }
 `
 

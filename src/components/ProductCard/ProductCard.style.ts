@@ -6,25 +6,27 @@ export const ProductCardDiv = styled.div`
         const { colors, fonts } = theme
         return css`
             border: 1px solid ${colors.gray};
+
+            // 상품 이미지 사이즈 조절
             .product-img {
+                width: 100%;
+                height: 240px;
                 img {
-                    width: 100% !important;
-                    height: 100% !important;
+                    width: 100%;
+                    height: 100%;
                     object-fit: cover;
                 }
             }
 
+            // 상품 내용
             .product-info {
                 ${flexCenterSpaceBetween}
                 padding: 8px;
                 > div {
                     flex: 7;
+                    overflow: hidden;
                     h3 {
-                        display: block;
-                        font-size: ${fonts.f16};
-                        max-width: 180px;
-                        width: inherit;
-                        // 후에 반응형으로 변경
+                        font-size: ${fonts.f14};
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
@@ -36,6 +38,7 @@ export const ProductCardDiv = styled.div`
                     }
                 }
 
+                // 담기 버튼
                 button {
                     flex: 2;
                     border: 1px solid blue;

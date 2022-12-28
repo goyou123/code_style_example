@@ -5,8 +5,11 @@ export const NavDiv = styled.div`
         const { colors, fonts } = theme
         return css`
             // header
-            padding: 20px 0;
-            background: black;
+            background: ${colors.black};
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            line-height: 70px;
 
             // logo
             h1 {
