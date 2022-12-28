@@ -1,8 +1,14 @@
 import React from "react"
-import "./App.css"
+
+//component
+import DefaultLayout from "layout/DefaultLayout"
 
 function App() {
-    return <div className="App">안녕</div>
+    return (
+        <div className="App">
+            <DefaultLayout />
+        </div>
+    )
 }
 
 export default App
