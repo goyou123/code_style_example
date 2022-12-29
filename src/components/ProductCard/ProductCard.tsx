@@ -1,7 +1,11 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { moneyFormat } from "lib/utils"
+import _ from "lodash"
 //css
 import { ProductCardDiv } from "components/ProductCard/ProductCard.style"
+
+// zustand
+import { useBoundStore } from "store/useBoundStore"
 
 interface IProps {
     product: {
@@ -15,6 +19,16 @@ interface IProps {
 }
 
 function ProductCard({ product }: IProps) {
+    const cartItems = useBoundStore((state) => state.cartItems)
+    const addCart = useBoundStore((state) => state.addCart)
+    const removeCart = useBoundStore((state) => state.removeCart)
+    const [isCart, _setIsCart] = useState(false)
+
+    useEffect(() => {
+        // console.log(`${product.item_name}의 장바구니 여부는 ${isCart}`)
+        _setIsCart(_.some(cartItems, { item_no: product.item_no }))
+    }, [cartItems])
+
     return (
         <ProductCardDiv>
             <div className="product-img">
@@ -26,8 +40,11 @@ function ProductCard({ product }: IProps) {
                     <p>{moneyFormat(product.price)}</p>
                 </div>
 
-                {/* TODO : 컴포넌트로 분리? */}
-                <button>담기</button>
+                {isCart ? (
+                    <button onClick={() => removeCart([product.item_no])}>빼기</button>
+                ) : (
+                    <button onClick={() => addCart(product)}>담기</button>
+                )}
             </div>
         </ProductCardDiv>
     )

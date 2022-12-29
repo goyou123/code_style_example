@@ -5,6 +5,9 @@ import { Link } from "react-router-dom"
 //css
 import { NavDiv, ContainerDiv } from "layout/NavigationBar/NagivaionBar.style"
 
+//component
+import CountNotify from "components/CountNotify/CountNotify"
+
 interface IProps {
     routes: RouteType[]
 }
@@ -19,7 +22,9 @@ function NavigationBar({ routes }: IProps) {
                         {routes.map((r, i) => {
                             return (
                                 <li key={i}>
-                                    <Link to={r.path}> {r.name}</Link>
+                                    <Link to={r.path}>
+                                        {r.name} {r.name === "장바구니" && <CountNotify />}
+                                    </Link>
                                 </li>
                             )
                         })}

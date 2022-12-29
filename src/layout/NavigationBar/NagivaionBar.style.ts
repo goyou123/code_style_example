@@ -23,6 +23,7 @@ export const NavDiv = styled.div`
             ul {
                 display: flex;
                 li {
+                    position: relative;
                     padding: 0 0 0 20px;
                     color: ${colors.white};
                     font-size: ${fonts.f14};

@@ -8,8 +8,12 @@ import { ProductPageDiv, Container } from "pages/ProductPage/ProductPage.style"
 
 //data
 import { productItems } from "lib/DummyData"
+import { useBoundStore } from "store/useBoundStore"
 
 function ProductsPage() {
+    // const { cartItems } = useStore()
+    const cartItems = useBoundStore((state) => state.cartItems)
+
     const [productArray, _setProductArray] = useState(productItems) // 보여줄 상품 리스트
 
     // 페이징 관련 state들
@@ -34,6 +38,9 @@ function ProductsPage() {
         _setProductArray(showFiveItems)
     }, [page])
 
+    useEffect(() => {
+        console.log(cartItems)
+    }, [cartItems])
     return (
         <ProductPageDiv>
             <div>
