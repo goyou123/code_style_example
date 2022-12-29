@@ -8,6 +8,8 @@ import { ProductPageDiv, Container } from "pages/ProductPage/ProductPage.style"
 
 //data
 import { productItems } from "lib/DummyData"
+
+//zustand
 import { useBoundStore } from "store/useBoundStore"
 
 function ProductsPage() {

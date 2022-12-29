@@ -1,7 +1,7 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
 
-import CartPage from "pages/CartPage"
+import CartPage from "pages/CartPage/CartPage"
 import ProductsPage from "pages/ProductPage/ProductsPage"
 import ErrorPage from "pages/ErrorPage"
 
@@ -12,7 +12,7 @@ export interface RouteType {
 
 export const ROUTES: RouteType[] = [
     {
-        name: "전체 상품",
+        name: "상품목록",
         path: "/products",
     },
     {

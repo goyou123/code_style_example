@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { flexCenterSpaceBetween } from "styles/OftenStyle"
+import { flexCenterSpaceBetween, longTextStyle } from "styles/OftenStyle"
 
 export const ProductCardDiv = styled.div`
     ${({ theme }) => {
@@ -27,9 +27,7 @@ export const ProductCardDiv = styled.div`
                     overflow: hidden;
                     h3 {
                         font-size: ${fonts.f14};
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
+                        ${longTextStyle}
                     }
 
                     p {

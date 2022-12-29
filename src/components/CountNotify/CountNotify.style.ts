@@ -11,7 +11,7 @@ export const CountNotifyDiv = styled.div`
             top: 25%;
             right: -20px;
             border-radius: 100%;
-            background: red;
+            background: ${colors.red};
             ${flexCenterAlign}
         `
     }}

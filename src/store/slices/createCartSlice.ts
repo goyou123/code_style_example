@@ -9,17 +9,17 @@ export const createCartSlice: StateCreator<CartStoreType> = (set) => ({
     cartItems: [],
 
     // 장바구니 추가시 cartItems배열에 객체 형태로 데이터 추가
-    addCart(data: ProductType) {
-        set((state) => ({ cartItems: [...state.cartItems, data] }))
+    addCart(product: ProductType) {
+        set((state) => ({ cartItems: [...state.cartItems, product] }))
     },
 
     // 상품 ID값을 배열로 받아서 cartItems 에서 삭제
-    removeCart: (indexArray: number[]) =>
+    removeCart: (IDArray: number[]) =>
         set(
             produce((state) => {
-                for (let i = 0; i < indexArray.length; i++) {
+                for (let i = 0; i < IDArray.length; i++) {
                     _.remove(state.cartItems, {
-                        item_no: indexArray[i],
+                        item_no: IDArray[i],
                     })
                 }
             })

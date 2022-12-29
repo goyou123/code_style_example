@@ -19,7 +19,8 @@ const colors = {
     transparent: "transparent",
     white: "#FFFFFF",
     black: "#000000",
-    gray: "#EEEEEE",
+    gray: "#CCCCCC",
+    red: "#FF0000",
 }
 
 /* 라이트 모드에서만 사용되는 color 정의 */

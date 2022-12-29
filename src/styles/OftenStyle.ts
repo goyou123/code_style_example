@@ -35,3 +35,51 @@ export const H2 = css`
         `
     }}
 `
+/* 모든 페이지 좌우여백 + h2 폰트 적용 */
+export const defaultPageStyle = css`
+    width: 70%;
+    margin: 0 auto;
+    padding: 70px 0 0 0;
+    h2 {
+        ${H2};
+    }
+`
+
+/* 공통 체크박스 스타일 */
+export const defaultCheckBoxStyle = css`
+    ${({ theme }) => {
+        const { colors, fonts } = theme
+        return css`
+            input {
+                display: none;
+            }
+            input[type="checkbox"] + label {
+                display: block;
+                width: 20px;
+                height: 20px;
+                border: 1px solid #7a7a7a;
+                position: relative;
+            }
+            input:checked + label::after {
+                content: "✓";
+                font-size: ${fonts.f16};
+                font-weight: bold;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-color: ${colors.black};
+                color: ${colors.white};
+            }
+        `
+    }}
+`
+
+/* 긴 텍스트 ...처리 */
+export const longTextStyle = css`
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`

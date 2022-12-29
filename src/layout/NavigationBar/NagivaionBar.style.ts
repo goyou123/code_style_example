@@ -10,6 +10,7 @@ export const NavDiv = styled.div`
             width: 100%;
             height: 70px;
             line-height: 70px;
+            z-index: 1001;
 
             // logo
             h1 {
