@@ -14,6 +14,7 @@ export const CartPageDiv = styled.div`
                 // 좌측 아이템 리스트
                 .cart-item-area {
                     margin-right: 30px;
+                    width: 95%;
 
                     // 전체선택 부분
                     .select-header {
@@ -33,6 +34,19 @@ export const CartPageDiv = styled.div`
                                 ${defaultCheckBoxStyle}
                             }
                         }
+
+                        .btn-select-remove {
+                            border-left: 1px solid ${colors.gray};
+                            padding-left: 10px;
+                        }
+                    }
+
+                    // 빈 장바구니
+                    .empty {
+                        line-height: 100px;
+                        height: 100px;
+                        text-align: center;
+                        font-size: ${fonts.f20};
                     }
                 }
             }

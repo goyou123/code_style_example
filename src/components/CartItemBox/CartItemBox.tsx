@@ -11,13 +11,21 @@ interface IProps {
         score: number
         availableCoupon?: boolean
     }
+    handleSingleCheck: (checked: boolean, id: number) => void
+    checkItems: number[]
 }
-function CartItemBox({ product }: IProps) {
+function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
     return (
         <CartItemBoxLi>
             <div className="product-info-area">
                 <div className="checkbox">
-                    <input type="checkbox" name="item" id={`check ${product.item_no}`} />
+                    <input
+                        type="checkbox"
+                        name="item"
+                        id={`check ${product.item_no}`}
+                        onChange={(e) => handleSingleCheck(e.target.checked, product.item_no)}
+                        checked={!!checkItems.includes(product.item_no)}
+                    />
                     <label htmlFor={`check ${product.item_no}`} />
                 </div>
                 <div className="product-img">
