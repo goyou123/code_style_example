@@ -18,6 +18,7 @@ interface IProps {
     handleSingleCheck: (checked: boolean, id: number) => void
     checkItems: number[]
 }
+
 function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
     const cartItems = useBoundStore((state) => state.cartItems)
     const index = cartItems.findIndex((a) => {
@@ -28,28 +29,40 @@ function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
     const [price, _setPrice] = useState<string>()
     const changeQantity = useBoundStore((state) => state.changeQantity)
 
-    useEffect(() => {
-        if (inputs > 100) {
-            alert("구매가능한 상품 수를 초과하였습니다. (100개)")
-            _setInputs(100)
-            changeQantity(product.item_no, "write", 100)
-        }
+    const LIMIT_COUNT = 100 // 상품의 최대 수량 (임의로 결정)
+    const PRODUCT_ID = product.item_no
 
-        if (inputs === 0) {
-            alert("1 이하는 입력할 수 없습니다.")
-            _setInputs(1)
-            changeQantity(product.item_no, "write", 1)
-        }
+    useEffect(() => {
         const res = moneyFormat(product.price * inputs)
         _setPrice(res)
     }, [inputs])
 
-    useEffect(() => {
-        console.log(cartItems)
-    }, [cartItems])
+    /* input값의 변화에 따라 input값 랜더링과 store에서 수량변경을 해주는 함수 */
+    const setInputAndChangeStore = (productID: number, type: string, count: number) => {
+        console.log(`${type} / ${count}`)
+        switch (type) {
+            case "INCREASE":
+                _setInputs(inputs + count)
+                changeQantity(productID, type, count)
+                break
+
+            case "DECREASE":
+                _setInputs(inputs - count)
+                changeQantity(productID, type, count)
+                break
+
+            case "INPUT":
+                _setInputs(count)
+                changeQantity(productID, type, count)
+                break
+
+            default:
+                console.error(`[cart] ${type} 은 지정되지 않은 타입입니다. `)
+        }
+    }
 
     /* input 핸들러 고려사항
-     * - 입력시마다 작동해야 한다.
+     * - 입력시마다 작동해야 한다. (store저장 + input값 변화)
      * - 텍스트는 입력해도 아무일 X
      * - 숫자 앞에 0을 제거한다.
      * - 3.3ㅁㄴㅇ1 -> 331 로 변경되어 입력되도록 (복붙값도 포함)
@@ -60,22 +73,39 @@ function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
         const val = e.target.value
         const newValue = Number(val.replace(/[^0-9]/g, ""))
 
-        // if (newValue === 0) {
-        //     alert("1 이하는 입력할 수 없습니다.")
-        //     _setInputs(1)
-        // }
+        if (newValue === 0) {
+            alert("1 이하는 입력할 수 없습니다.")
+            setInputAndChangeStore(PRODUCT_ID, "INPUT", 1)
+            return
+        }
 
-        _setInputs(newValue)
-        changeQantity(product.item_no, "write", newValue)
+        if (newValue > 100) {
+            alert(`구매가능한 상품 수를 초과하였습니다. (${LIMIT_COUNT}개)`)
+            setInputAndChangeStore(PRODUCT_ID, "INPUT", LIMIT_COUNT)
+            return
+        }
+
+        // 필터를 거쳐 1 ~ 100 사이의 숫자만 오게됨
+        setInputAndChangeStore(PRODUCT_ID, "INPUT", newValue)
     }
+
+    /* -,+ 수량 증가감소 함수들 */
     const increase = () => {
-        changeQantity(product.item_no, "increase")
-        _setInputs(inputs + 1)
+        if (inputs >= 1 && inputs < LIMIT_COUNT) {
+            setInputAndChangeStore(PRODUCT_ID, "INCREASE", 1)
+        } else {
+            console.error("[cart] 수량증가시 입력범위 초과")
+            alert(`구매가능한 상품 수를 초과하였습니다. (${LIMIT_COUNT}개)`)
+        }
     }
 
     const decrease = () => {
-        changeQantity(product.item_no, "decrease")
-        _setInputs(inputs - 1)
+        if (inputs > 1 && inputs <= LIMIT_COUNT) {
+            setInputAndChangeStore(PRODUCT_ID, "DECREASE", 1)
+        } else {
+            console.error("[cart] 수량감소시 입력범위 초과")
+            alert("1 이하는 입력할 수 없습니다.")
+        }
     }
 
     return (
@@ -85,12 +115,12 @@ function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
                     <input
                         type="checkbox"
                         name="item"
-                        id={`check ${product.item_no}`}
-                        onChange={(e) => handleSingleCheck(e.target.checked, product.item_no)}
-                        checked={!!checkItems.includes(product.item_no)}
+                        id={`check ${PRODUCT_ID}`}
+                        onChange={(e) => handleSingleCheck(e.target.checked, PRODUCT_ID)}
+                        checked={!!checkItems.includes(PRODUCT_ID)}
                     />
 
-                    <label htmlFor={`check ${product.item_no}`} />
+                    <label htmlFor={`check ${PRODUCT_ID}`} />
                 </div>
                 <div className="product-img">
                     <img src={product.detail_image_url} alt="" />
