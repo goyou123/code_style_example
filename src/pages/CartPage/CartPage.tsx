@@ -16,7 +16,7 @@ function CartPage() {
     const [checkItems, _setCheckItems] = useState<number[]>([])
 
     useEffect(() => {
-        console.log(checkItems)
+        // console.log(checkItems)
     }, [checkItems])
 
     /* 체크박스 단일 개체 선택 시 실행될 함수 */

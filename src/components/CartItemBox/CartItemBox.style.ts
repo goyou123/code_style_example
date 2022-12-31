@@ -47,12 +47,18 @@ export const CartItemBoxLi = styled.li`
                 .product-counter {
                     ${flexCenterAlign}
                     border: 1px solid ${colors.gray};
-
-                    button {
+                    input {
+                        display: block;
+                        border: none;
+                        text-align: center;
+                    }
+                    button,
+                    input {
                         width: 40px;
                         height: 40px;
                         font-size: ${fonts.f14};
                     }
+
                     button:nth-child(2) {
                         border-right: 1px solid ${colors.gray};
                         border-left: 1px solid ${colors.gray};
