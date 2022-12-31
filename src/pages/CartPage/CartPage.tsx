@@ -13,19 +13,23 @@ import CartItemBox from "components/CartItemBox/CartItemBox"
 function CartPage() {
     const cartItems = useBoundStore((state) => state.cartItems)
     const removeCart = useBoundStore((state) => state.removeCart)
-    const [checkItems, _setCheckItems] = useState<number[]>([])
+    const [checkItemsArray, _setCheckItemsArray] = useState<number[]>([])
+    const [totalPrice, _setTotalPrice] = useState<string>("")
 
     useEffect(() => {
-        // console.log(checkItems)
-    }, [checkItems])
+        // 초기 아이템 리스트 전체선택
+        const idArray: number[] = []
+        cartItems.forEach((el) => idArray.push(el.item_no))
+        _setCheckItemsArray(idArray)
+    }, [])
 
     /* 체크박스 단일 개체 선택 시 실행될 함수 */
     const handleSingleCheck = (checked: boolean, id: number) => {
         if (checked) {
-            _setCheckItems([...checkItems, id])
+            _setCheckItemsArray([...checkItemsArray, id])
         } else {
             // 체크 해제
-            _setCheckItems(checkItems.filter((el) => el !== id))
+            _setCheckItemsArray(checkItemsArray.filter((el) => el !== id))
         }
     }
 
@@ -34,24 +38,24 @@ function CartPage() {
         if (checked) {
             const idArray: number[] = []
             cartItems.forEach((el) => idArray.push(el.item_no))
-            _setCheckItems(idArray)
+            _setCheckItemsArray(idArray)
         }
 
         // 해당 state를 비워 전체체크 해제
         else {
-            _setCheckItems([])
+            _setCheckItemsArray([])
         }
     }
 
     /* 선택 삭제 함수 */
     const selectRemoveItems = () => {
-        if (checkItems.length > 0) {
-            if (confirm(`선택한 상품 ${checkItems.length}개를 삭제하시겠습니까?`)) {
+        if (checkItemsArray.length > 0) {
+            if (confirm(`선택한 상품 ${checkItemsArray.length}개를 삭제하시겠습니까?`)) {
                 // store 장바구니 에서 삭제
-                removeCart(checkItems)
+                removeCart(checkItemsArray)
 
                 // 체크박스 선택 리스트 초기화
-                _setCheckItems([])
+                _setCheckItemsArray([])
             }
         } else {
             alert("선택한 상품이 없습니다.")
@@ -72,7 +76,9 @@ function CartPage() {
                                     id="check-all"
                                     onChange={(e) => handleAllCheck(e.target.checked)}
                                     checked={
-                                        checkItems.length !== 0 && checkItems.length === cartItems.length ? true : false
+                                        checkItemsArray.length !== 0 && checkItemsArray.length === cartItems.length
+                                            ? true
+                                            : false
                                     }
                                 />
                                 <label htmlFor="check-all" />
@@ -90,7 +96,7 @@ function CartPage() {
                                     key={c.item_no}
                                     product={c}
                                     handleSingleCheck={handleSingleCheck}
-                                    checkItems={checkItems}
+                                    checkItemsArray={checkItemsArray}
                                 />
                             ))
                         ) : (
@@ -101,7 +107,7 @@ function CartPage() {
                         )}
                     </ul>
                 </div>
-                <PayBox />
+                <PayBox totalPrice={totalPrice} _setTotalPrice={_setTotalPrice} checkItemsArray={checkItemsArray} />
             </div>
         </CartPageDiv>
     )

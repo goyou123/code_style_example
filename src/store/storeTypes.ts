@@ -7,12 +7,22 @@ export interface ProductType {
     price: number
     score: number
     availableCoupon?: boolean
-    quantity?: number
+    quantity: number
+}
+
+export interface ProductTypeInStore {
+    item_no: number
+    item_name: string
+    detail_image_url: string
+    price: number
+    score: number
+    availableCoupon?: boolean
+    quantity?: number | null
 }
 
 export interface CartStoreType {
     cartItems: ProductType[]
-    addCart: (item: ProductType) => void
+    addCart: (item: ProductTypeInStore) => void
     removeCart: (IDArray: number[]) => void
     changeQantity: (productID: number, type: string, count: number) => void
 }

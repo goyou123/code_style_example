@@ -2,14 +2,14 @@ import produce from "immer"
 import { StateCreator } from "zustand"
 import _ from "lodash"
 
-import { ProductType, CartStoreType } from "store/storeTypes"
+import { ProductType, CartStoreType, ProductTypeInStore } from "store/storeTypes"
 
 export const createCartSlice: StateCreator<CartStoreType> = (set) => ({
     // 장바구니 들어갈 객체형태의 아이템 배열 (초기는 빈값)
     cartItems: [],
 
     // 장바구니 추가시 cartItems배열에 객체 형태로 데이터 추가
-    addCart: (product: ProductType) =>
+    addCart: (product: ProductTypeInStore) =>
         set(
             produce((state) => {
                 // 수량 속성 추가 후 저장
@@ -37,7 +37,7 @@ export const createCartSlice: StateCreator<CartStoreType> = (set) => ({
     changeQantity: (productID: number, type: string, count: number) =>
         set(
             produce((state) => {
-                const index = state.cartItems.findIndex((a: ProductType) => {
+                const index = state.cartItems.findIndex((a: ProductTypeInStore) => {
                     return a.item_no === productID
                 })
 

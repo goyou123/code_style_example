@@ -16,10 +16,10 @@ interface IProps {
         availableCoupon?: boolean
     }
     handleSingleCheck: (checked: boolean, id: number) => void
-    checkItems: number[]
+    checkItemsArray: number[]
 }
 
-function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
+function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
     const cartItems = useBoundStore((state) => state.cartItems)
     const index = cartItems.findIndex((a) => {
         return a.item_no === product.item_no
@@ -33,7 +33,9 @@ function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
     const PRODUCT_ID = product.item_no
 
     useEffect(() => {
-        const res = moneyFormat(product.price * inputs)
+        // 물건 각각의 수량에 따른 금액 설정
+        const sum = product.price * inputs
+        const res = moneyFormat(sum)
         _setPrice(res)
     }, [inputs])
 
@@ -117,7 +119,7 @@ function CartItemBox({ product, handleSingleCheck, checkItems }: IProps) {
                         name="item"
                         id={`check ${PRODUCT_ID}`}
                         onChange={(e) => handleSingleCheck(e.target.checked, PRODUCT_ID)}
-                        checked={!!checkItems.includes(PRODUCT_ID)}
+                        checked={!!checkItemsArray.includes(PRODUCT_ID)}
                     />
 
                     <label htmlFor={`check ${PRODUCT_ID}`} />
