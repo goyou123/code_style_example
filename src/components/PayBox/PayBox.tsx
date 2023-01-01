@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 //css
 import { PayBoxDiv } from "./PayBox.style"
+
 // utils
 import { moneyFormat } from "lib/utils"
+import _ from "lodash"
+
 //zustand
 import { useBoundStore } from "store/useBoundStore"
-import _ from "lodash"
 
 //data
 import { coupons } from "lib/DummyData"
@@ -31,9 +33,10 @@ function PayBox({ checkItemsArray }: IProps) {
         } else {
             let sum = 0
             for (let i = 0; i < cartItems.length; i++) {
-                // 체크한 리스트에 장바구니 안의 상품이 있으면
+                // 체크한 리스트에 장바구니 안의 상품이 있는지 검토
                 const isChecked = _.some(checkItemsArray, (item) => item === cartItems[i].item_no)
 
+                // 존재하는 상품이라면 수량을 계산한 금액 누적
                 if (isChecked) {
                     sum = sum + cartItems[i].price * cartItems[i].quantity
                 }
@@ -79,7 +82,8 @@ function PayBox({ checkItemsArray }: IProps) {
                 _setIsDiscount(false)
                 _setSelectValue("DEFAULT")
             } else {
-                console.log(`${selectValue} / 쿠폰적용가능한 아이템들의 총합 : ${sum} `)
+                // console.log(`${selectValue} / 쿠폰적용가능한 아이템들의 총합 : ${sum} `)
+
                 _setIsDiscount(true)
                 switch (selectValue) {
                     case "DEFAULT":
@@ -88,12 +92,10 @@ function PayBox({ checkItemsArray }: IProps) {
 
                     case "amount":
                         _setDiscountPrice(10000)
-
                         break
 
                     case "rate":
-                        _setDiscountPrice(sum / 10) // 10 이거 모듈화 가능?
-
+                        _setDiscountPrice(sum / 10)
                         break
 
                     default:
@@ -152,7 +154,7 @@ function PayBox({ checkItemsArray }: IProps) {
                     <li>
                         <p>할인 쿠폰</p>
                         <div>
-                            <select onChange={onChange} value={selectValue}>
+                            <select onChange={onChange} value={selectValue} className="select-coupon">
                                 <option value={"DEFAULT"}>==선택안함==</option>
                                 {coupons.map((c, i) => {
                                     return (
@@ -171,12 +173,13 @@ function PayBox({ checkItemsArray }: IProps) {
                         </p>
                     </li>
                 </ul>
+
                 <div className="expect-price">
                     <b>총 결제 금액</b>
                     <p>{moneyFormat(finalPrice)}</p>
                 </div>
             </div>
-            <button onClick={paying}> {moneyFormat(finalPrice)} 결제하기</button>
+            <button onClick={paying}>{moneyFormat(finalPrice)} 결제하기</button>
         </PayBoxDiv>
     )
 }

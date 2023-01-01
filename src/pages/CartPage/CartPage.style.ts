@@ -35,18 +35,30 @@ export const CartPageDiv = styled.div`
                             }
                         }
 
+                        // 선택삭제 버튼
                         .btn-select-remove {
                             border-left: 1px solid ${colors.gray};
                             padding-left: 10px;
                         }
                     }
 
-                    // 빈 장바구니
+                    // 빈 장바구니일때
                     .empty {
                         line-height: 100px;
                         height: 100px;
                         text-align: center;
                         font-size: ${fonts.f20};
+
+                        // 상품 보러가기 버튼
+                        .btn-go-shop {
+                            border: 1px solid ${colors.black};
+                            height: 40px;
+                            line-height: 40px;
+                            padding: 0 20px;
+                        }
+
+                        
+                        }
                     }
                 }
             }

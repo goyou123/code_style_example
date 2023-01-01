@@ -128,8 +128,10 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
                 </div>
                 <div className="product-name">
                     <h4>
-                        {product.item_name} / {product.availableCoupon === false && "쿠폰적용불가"}
+                        {product.item_name}{" "}
+                        <span className="isCoupon"> {product.availableCoupon === false && "[쿠폰 적용 불가]"}</span>
                     </h4>
+                    <p>{moneyFormat(product.price)}</p>
                 </div>
             </div>
 

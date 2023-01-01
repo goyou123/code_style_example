@@ -35,6 +35,16 @@ export const CartItemBoxLi = styled.li`
                 //상품 이름
                 .product-name {
                     font-size: ${fonts.f14};
+
+                    h4 {
+                        font-weight: bold;
+                        padding-bottom: 10px;
+                    }
+
+                    .isCoupon {
+                        font-weight: normal;
+                        color: ${colors.red};
+                    }
                 }
             }
 
@@ -51,6 +61,9 @@ export const CartItemBoxLi = styled.li`
                         display: block;
                         border: none;
                         text-align: center;
+                    }
+                    input:focus {
+                        border: 1px solid ${colors.black};
                     }
                     button,
                     input {

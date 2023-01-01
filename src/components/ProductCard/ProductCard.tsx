@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react"
+
+//utils
 import { moneyFormat } from "lib/utils"
 import _ from "lodash"
+
 //css
 import { ProductCardDiv } from "components/ProductCard/ProductCard.style"
 

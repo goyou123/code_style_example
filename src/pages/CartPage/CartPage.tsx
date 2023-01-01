@@ -14,8 +14,6 @@ function CartPage() {
     const cartItems = useBoundStore((state) => state.cartItems)
     const removeCart = useBoundStore((state) => state.removeCart)
     const [checkItemsArray, _setCheckItemsArray] = useState<number[]>([])
-    // const [totalPrice, _setTotalPrice] = useState<string>("")
-    // const [totalPrice, _setTotalPrice] = useState<number>(0)
 
     useEffect(() => {
         // 초기 아이템 리스트 전체선택
@@ -68,28 +66,34 @@ function CartPage() {
             <h2>장바구니</h2>
             <div className="wrap">
                 <div className="cart-item-area">
-                    <div className="select-header">
-                        <div className="checkbox-container">
-                            <div className="checkbox">
-                                <input
-                                    type="checkbox"
-                                    name="all"
-                                    id="check-all"
-                                    onChange={(e) => handleAllCheck(e.target.checked)}
-                                    checked={
-                                        checkItemsArray.length !== 0 && checkItemsArray.length === cartItems.length
-                                            ? true
-                                            : false
-                                    }
-                                />
-                                <label htmlFor="check-all" />
+                    {/* 장바구니에 상품이 있을때만 UI 보이도록 */}
+                    {cartItems.length > 0 && (
+                        <div className="select-header">
+                            <div className="checkbox-container">
+                                <div className="checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="all"
+                                        id="check-all"
+                                        onChange={(e) => handleAllCheck(e.target.checked)}
+                                        checked={
+                                            checkItemsArray.length !== 0 && checkItemsArray.length === cartItems.length
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                    <label htmlFor="check-all" />
+                                </div>
+                                <p>
+                                    전체선택 <span>{checkItemsArray.length > 0 && checkItemsArray.length + "개"}</span>
+                                </p>
                             </div>
-                            <p>전체선택</p>
+                            <button className="btn-select-remove" onClick={() => selectRemoveItems()}>
+                                선택삭제
+                            </button>
                         </div>
-                        <button className="btn-select-remove" onClick={() => selectRemoveItems()}>
-                            선택삭제
-                        </button>
-                    </div>
+                    )}
+
                     <ul>
                         {cartItems.length !== 0 ? (
                             cartItems.map((c) => (
@@ -103,12 +107,12 @@ function CartPage() {
                         ) : (
                             <li className="empty">
                                 <p>장바구니에 담긴 상품이 없습니다.</p>
-                                <button>상품 보러가기 </button>
+                                <button className="btn-go-shop">상품 보러가기</button>
                             </li>
                         )}
                     </ul>
                 </div>
-                <PayBox checkItemsArray={checkItemsArray} />
+                {cartItems.length > 0 && <PayBox checkItemsArray={checkItemsArray} />}
             </div>
         </CartPageDiv>
     )

@@ -32,6 +32,10 @@ export const PayBoxDiv = styled.div`
                     .discount {
                         color: ${colors.red};
                     }
+
+                    .select-coupon {
+                        width: 110px;
+                    }
                 }
 
                 // 결제 예상 금액
