@@ -14,7 +14,8 @@ function CartPage() {
     const cartItems = useBoundStore((state) => state.cartItems)
     const removeCart = useBoundStore((state) => state.removeCart)
     const [checkItemsArray, _setCheckItemsArray] = useState<number[]>([])
-    const [totalPrice, _setTotalPrice] = useState<string>("")
+    // const [totalPrice, _setTotalPrice] = useState<string>("")
+    // const [totalPrice, _setTotalPrice] = useState<number>(0)
 
     useEffect(() => {
         // 초기 아이템 리스트 전체선택
@@ -107,7 +108,7 @@ function CartPage() {
                         )}
                     </ul>
                 </div>
-                <PayBox totalPrice={totalPrice} _setTotalPrice={_setTotalPrice} checkItemsArray={checkItemsArray} />
+                <PayBox checkItemsArray={checkItemsArray} />
             </div>
         </CartPageDiv>
     )

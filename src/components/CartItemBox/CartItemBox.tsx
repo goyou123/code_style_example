@@ -26,7 +26,7 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
     })
 
     const [inputs, _setInputs] = useState(Number(cartItems[index].quantity)) // 초기값이 store에 있는 해당 아이템의 수량
-    const [price, _setPrice] = useState<string>()
+    const [price, _setPrice] = useState<number>(0)
     const changeQantity = useBoundStore((state) => state.changeQantity)
 
     const LIMIT_COUNT = 100 // 상품의 최대 수량 (임의로 결정)
@@ -35,8 +35,7 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
     useEffect(() => {
         // 물건 각각의 수량에 따른 금액 설정
         const sum = product.price * inputs
-        const res = moneyFormat(sum)
-        _setPrice(res)
+        _setPrice(sum)
     }, [inputs])
 
     /* input값의 변화에 따라 input값 랜더링과 store에서 수량변경을 해주는 함수 */
@@ -128,7 +127,9 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
                     <img src={product.detail_image_url} alt="" />
                 </div>
                 <div className="product-name">
-                    <h4>{product.item_name}</h4>
+                    <h4>
+                        {product.item_name} / {product.availableCoupon === false && "쿠폰적용불가"}
+                    </h4>
                 </div>
             </div>
 
@@ -148,7 +149,7 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
                     <button onClick={increase}>+</button>
                 </div>
                 <div className="product-price">
-                    <b>{price}</b>
+                    <b>{moneyFormat(price)}</b>
                 </div>
             </div>
         </CartItemBoxLi>
