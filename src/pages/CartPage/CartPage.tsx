@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React from "react"
 
 //css
 import { CartPageDiv } from "pages/CartPage/CartPage.style"
@@ -10,41 +10,13 @@ import { useBoundStore } from "store/useBoundStore"
 import PayBox from "components/PayBox/PayBox"
 import CartItemBox from "components/CartItemBox/CartItemBox"
 
+//hooks
+import useCheckBox from "hooks/useCheckbox"
+
 function CartPage() {
     const cartItems = useBoundStore((state) => state.cartItems)
     const removeCart = useBoundStore((state) => state.removeCart)
-    const [checkItemsArray, _setCheckItemsArray] = useState<number[]>([])
-
-    useEffect(() => {
-        // 초기 아이템 리스트 전체선택
-        const idArray: number[] = []
-        cartItems.forEach((el) => idArray.push(el.item_no))
-        _setCheckItemsArray(idArray)
-    }, [])
-
-    /* 체크박스 단일 개체 선택 시 실행될 함수 */
-    const handleSingleCheck = (checked: boolean, id: number) => {
-        if (checked) {
-            _setCheckItemsArray([...checkItemsArray, id])
-        } else {
-            // 체크 해제
-            _setCheckItemsArray(checkItemsArray.filter((el) => el !== id))
-        }
-    }
-
-    /* 전체 선택 함수 */
-    const handleAllCheck = (checked: boolean) => {
-        if (checked) {
-            const idArray: number[] = []
-            cartItems.forEach((el) => idArray.push(el.item_no))
-            _setCheckItemsArray(idArray)
-        }
-
-        // 해당 state를 비워 전체체크 해제
-        else {
-            _setCheckItemsArray([])
-        }
-    }
+    const { checkItemsArray, _setCheckItemsArray, handleAllCheck, handleSingleCheck } = useCheckBox(cartItems)
 
     /* 선택 삭제 함수 */
     const selectRemoveItems = () => {
@@ -75,7 +47,8 @@ function CartPage() {
                                         type="checkbox"
                                         name="all"
                                         id="check-all"
-                                        onChange={(e) => handleAllCheck(e.target.checked)}
+                                        // onChange={(e) => handleAllCheck(e.target.checked)}
+                                        onChange={handleAllCheck}
                                         checked={
                                             checkItemsArray.length !== 0 && checkItemsArray.length === cartItems.length
                                                 ? true

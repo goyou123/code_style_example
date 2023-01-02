@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, ChangeEvent } from "react"
 import { moneyFormat } from "lib/utils"
 //zustand
 import { useBoundStore } from "store/useBoundStore"
@@ -10,7 +10,7 @@ import { CartItemBoxLi } from "components/CartItemBox/CartItemBox.style"
 import { ProductType } from "types/main"
 interface IProps {
     product: ProductType
-    handleSingleCheck: (checked: boolean, id: number) => void
+    handleSingleCheck: (e: ChangeEvent<HTMLInputElement>, id: number) => void
     checkItemsArray: number[]
 }
 
@@ -114,7 +114,7 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
                         type="checkbox"
                         name="item"
                         id={`check ${PRODUCT_ID}`}
-                        onChange={(e) => handleSingleCheck(e.target.checked, PRODUCT_ID)}
+                        onChange={(e) => handleSingleCheck(e, PRODUCT_ID)}
                         checked={!!checkItemsArray.includes(PRODUCT_ID)}
                     />
 

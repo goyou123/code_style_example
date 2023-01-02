@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 
 import CartPage from "pages/CartPage/CartPage"
 import ProductsPage from "pages/ProductPage/ProductsPage"
@@ -24,6 +24,7 @@ export const ROUTES: RouteType[] = [
 function MainRouter() {
     return (
         <Routes>
+            <Route path="/" element={<Navigate to="/products" replace />} />
             <Route path="*" element={<ErrorPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/cart" element={<CartPage />} />
