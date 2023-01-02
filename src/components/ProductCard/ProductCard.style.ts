@@ -76,7 +76,7 @@ export const ProductCardDiv = styled.div`
             // 상품 내용
             .product-info {
                 ${flexColumSpaceBetween}
-                padding: 12px 8px;
+                padding: 6px;
                 height: 74px;
                 /* overflow: hidden; */
                 h3 {
@@ -85,7 +85,7 @@ export const ProductCardDiv = styled.div`
                 }
 
                 p {
-                    font-size: ${fonts.f16};
+                    font-size: ${fonts.f18};
                     font-weight: bold;
                 }
             }

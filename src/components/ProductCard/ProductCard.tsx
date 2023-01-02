@@ -31,8 +31,12 @@ function ProductCard({ product }: IProps) {
     }, [cartItems])
 
     const add = () => {
-        if (confirm("장바구니에 상품을 추가하시겠습니까?")) {
-            addCart(product)
+        if (cartItems.length >= 3) {
+            alert("장바구니에는 최대 3개의 상품만 담을 수 있습니다.")
+        } else {
+            if (confirm("장바구니에 상품을 추가하시겠습니까?")) {
+                addCart(product)
+            }
         }
     }
 

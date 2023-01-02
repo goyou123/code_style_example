@@ -24,7 +24,7 @@ function ProductsPage() {
 
     /* score 내림차순으로 정렬 */
     const sortArray = useMemo(() => {
-        return productItems.sort((a, b) => a.score - b.score)
+        return productItems.sort((a, b) => b.score - a.score)
     }, [])
 
     /* 현재 페이지 변경 핸들러 */
