@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 
 //css
 import { CartPageDiv } from "pages/CartPage/CartPage.style"

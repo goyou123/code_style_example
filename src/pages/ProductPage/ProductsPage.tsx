@@ -13,7 +13,6 @@ import { productItems } from "lib/DummyData"
 import { useBoundStore } from "store/useBoundStore"
 
 function ProductsPage() {
-    // const { cartItems } = useStore()
     const cartItems = useBoundStore((state) => state.cartItems)
 
     const [productArray, _setProductArray] = useState(productItems) // 보여줄 상품 리스트
@@ -47,7 +46,7 @@ function ProductsPage() {
         <ProductPageDiv>
             <div>
                 <h2>상품목록</h2>
-                <p>
+                <p className="product-count-text">
                     총 <span>{productItems.length}</span>개 상품이 있습니다.
                 </p>
                 <Container>

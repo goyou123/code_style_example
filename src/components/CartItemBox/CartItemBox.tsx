@@ -20,6 +20,8 @@ interface IProps {
 }
 
 function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
+    // console.log(product.item_no)
+
     const cartItems = useBoundStore((state) => state.cartItems)
     const index = cartItems.findIndex((a) => {
         return a.item_no === product.item_no

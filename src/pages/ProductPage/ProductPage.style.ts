@@ -7,7 +7,7 @@ export const ProductPageDiv = styled.div`
         return css`
             ${defaultPageStyle}
 
-            p {
+            .product-count-text {
                 font-size: ${fonts.f14};
                 padding: 20px 0;
                 span {
@@ -26,5 +26,6 @@ export const ProductPageDiv = styled.div`
 export const Container = styled.div`
     display: grid;
     grid-gap: 8px;
-    grid-template-columns: repeat(auto-fill, minmax(240px, auto));
+    /* grid-template-columns: repeat(auto-fill, minmax(240px, auto)); */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 `
