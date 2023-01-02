@@ -1,5 +1,5 @@
 import create from "zustand"
-import { CartStoreType } from "store/storeTypes"
+import { CartStoreType } from "types/storeTypes"
 import { createCartSlice } from "store/slices/createCartSlice"
 import { persist, devtools } from "zustand/middleware"
 

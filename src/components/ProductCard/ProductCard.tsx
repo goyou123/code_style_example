@@ -12,15 +12,11 @@ import { BsCartDash } from "react-icons/bs"
 // zustand
 import { useBoundStore } from "store/useBoundStore"
 
+//types
+import { ProductType } from "types/main"
+
 interface IProps {
-    product: {
-        item_no: number
-        item_name: string
-        detail_image_url: string
-        price: number
-        score: number
-        availableCoupon?: boolean
-    }
+    product: ProductType
 }
 
 function ProductCard({ product }: IProps) {

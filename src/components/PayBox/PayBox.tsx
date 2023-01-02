@@ -38,7 +38,7 @@ function PayBox({ checkItemsArray }: IProps) {
 
                 // 존재하는 상품이라면 수량을 계산한 금액 누적
                 if (isChecked) {
-                    sum = sum + cartItems[i].price * cartItems[i].quantity
+                    sum = sum + cartItems[i].price * (cartItems[i].quantity as number)
                 }
             }
             _setTotalPrice(sum)
@@ -125,7 +125,8 @@ function PayBox({ checkItemsArray }: IProps) {
             if (isChecked) {
                 // 쿠폰 적용 가능한 아이템들의 금액 총합을 구해준다.
                 if (cartItems[i].availableCoupon !== false) {
-                    sum = sum + cartItems[i].price * cartItems[i].quantity
+                    //possibly undefined value 오류 해결하기 위해 타입을 정확하게 명시
+                    sum = sum + cartItems[i].price * (cartItems[i].quantity as number)
                 }
             }
         }

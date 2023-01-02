@@ -6,15 +6,10 @@ import { useBoundStore } from "store/useBoundStore"
 //css
 import { CartItemBoxLi } from "components/CartItemBox/CartItemBox.style"
 
+//types
+import { ProductType } from "types/main"
 interface IProps {
-    product: {
-        item_no: number
-        item_name: string
-        detail_image_url: string
-        price: number
-        score: number
-        availableCoupon?: boolean
-    }
+    product: ProductType
     handleSingleCheck: (checked: boolean, id: number) => void
     checkItemsArray: number[]
 }
@@ -23,7 +18,7 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
     // console.log(product.item_no)
 
     const cartItems = useBoundStore((state) => state.cartItems)
-    const index = cartItems.findIndex((a) => {
+    const index = cartItems.findIndex((a: ProductType) => {
         return a.item_no === product.item_no
     })
 
