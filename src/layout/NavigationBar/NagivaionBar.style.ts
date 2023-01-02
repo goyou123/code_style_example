@@ -23,17 +23,28 @@ export const NavDiv = styled.div`
             // navigation
             ul {
                 display: flex;
+                position: relative;
                 li {
                     position: relative;
                     padding: 0 0 0 20px;
                     color: ${colors.white};
                     font-size: ${fonts.f14};
                 }
+                li a:after {
+                    content: "";
+                    position: absolute;
+                    background-color: ${colors.white};
+                    height: 3px;
+                    width: 0;
+                    left: 20px;
+                    bottom: 17px;
+                    transition: 0.3s;
+                }
 
                 // 추후 약간의 애니메이션 추가하기
-                li:hover {
-                    font-weight: bold;
-                    transition: 0.5s;
+                li:hover ::after {
+                    width: 78%;
+                    /* transition: 0.5s; */
                 }
             }
         `

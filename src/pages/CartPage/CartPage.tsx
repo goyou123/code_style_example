@@ -1,5 +1,5 @@
 import React from "react"
-
+import { Link } from "react-router-dom"
 //css
 import { CartPageDiv } from "pages/CartPage/CartPage.style"
 
@@ -80,7 +80,9 @@ function CartPage() {
                         ) : (
                             <li className="empty">
                                 <p>장바구니에 담긴 상품이 없습니다.</p>
-                                <button className="btn-go-shop">상품 보러가기</button>
+                                <button className="btn-go-shop">
+                                    <Link to={"/products"}>상품 보러가기</Link>
+                                </button>
                             </li>
                         )}
                     </ul>

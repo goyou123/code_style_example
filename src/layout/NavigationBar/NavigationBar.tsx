@@ -16,7 +16,9 @@ function NavigationBar({ routes }: IProps) {
     return (
         <NavDiv>
             <ContainerDiv>
-                <h1>29CM</h1>
+                <h1>
+                    <Link to={"/"}>29CM</Link>
+                </h1>
                 <div>
                     <ul>
                         {routes.map((r, i) => {

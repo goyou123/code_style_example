@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { flexCenterSpaceBetween, flexCenterAlign, longTextStyle, flexColumSpaceBetween } from "styles/OftenStyle"
+import { longTextStyle, flexColumSpaceBetween } from "styles/OftenStyle"
 
 export const ProductCardDiv = styled.div`
     ${({ theme }) => {
@@ -21,10 +21,10 @@ export const ProductCardDiv = styled.div`
                     }
                 }
 
-                .cart-btn-wrap {
+                /* .cart-btn-wrap {
                     transform: translateX(0);
                     transition: 0.3s;
-                }
+                } */
             }
 
             // 상품 이미지 사이즈 조절
@@ -43,32 +43,39 @@ export const ProductCardDiv = styled.div`
             }
 
             .cart-btn-wrap {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 100%;
-                height: 240px;
-                transform: translateX(-100%);
-                transition: 0.3s;
-                background: ${colors.black};
-                background-color: rgba(0, 0, 0, 0.4);
-                ${flexCenterAlign}
-
                 button {
-                    height: 80px;
-                    width: 80px;
-                    padding: 12px;
+                    position: absolute;
+                    bottom: 6px;
+                    right: 6px;
+                    height: 60px;
+                    width: 60px;
+                    padding: 5px;
                     border-radius: 70%;
-                    border: 2px solid ${colors.white};
-                    color: ${colors.white};
+
                     font-weight: bold;
                     line-height: 50px;
-                    background: rgba(0, 0, 0, 0.6);
 
                     svg {
                         padding: 8px;
                         width: 100%;
                         height: 100%;
+                        color: ${colors.white};
+                        transform: scale(1);
+                        transition: 0.3s all;
+                    }
+                }
+
+                .btn-remove-cart {
+                    background: rgba(100, 100, 100, 0.7);
+                }
+                .btn-add-cart {
+                    background: rgba(0, 0, 0, 0.9);
+                }
+
+                button:hover {
+                    svg {
+                        transform: scale(1.1);
+                        transition: 0.3s all;
                     }
                 }
             }
@@ -78,7 +85,7 @@ export const ProductCardDiv = styled.div`
                 ${flexColumSpaceBetween}
                 padding: 6px;
                 height: 74px;
-                /* overflow: hidden; */
+
                 h3 {
                     font-size: ${fonts.f14};
                     /* ${longTextStyle} */

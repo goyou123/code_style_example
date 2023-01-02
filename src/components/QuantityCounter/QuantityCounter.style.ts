@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 import { flexCenterAlign } from "styles/OftenStyle"
 
-export const QuantityCounterDiv = styled.li`
+export const QuantityCounterDiv = styled.div`
     ${({ theme }) => {
         const { fonts, colors } = theme
         return css`
