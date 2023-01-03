@@ -7,7 +7,7 @@ npm install
 npm start
 ```
 
-`npm install` : package.json에 정의된 모듈 다운
+`npm install` : package.json에 정의된 모듈 다운 <br>
 `npm start` : 로컬 환경에서 실행
 
 <br><br>
@@ -38,15 +38,15 @@ npm start
 
 ```
 
-`components` : 페이지를 구성하는 컴포넌트들 , 공통으로 사용하는 컴포넌트들 모음 폴더
-`hooks` : 커스텀 훅 모음 폴더
-`layout` : 헤더 네비게이션 바, 공통 레이아웃 설정 폴더
-`lib` : 더미데이터, 유틸함수 모음 폴더
-`pages` : 페이지 컴포넌트 폴더
-`routes` : 라우팅을 관리하는 폴더
-`store` : zustand 상태 관리를 위한 폴더
-`style` : css 관련 폴더
-`types` : 공용 타입 지정 폴더
+`components` : 페이지를 구성하는 컴포넌트들 , 공통으로 사용하는 컴포넌트들 모음 폴더 <br>
+`hooks` : 커스텀 훅 모음 폴더 <br>
+`layout` : 헤더 네비게이션 바, 공통 레이아웃 설정 폴더 <br>
+`lib` : 더미데이터, 유틸함수 모음 폴더 <br>
+`pages` : 페이지 컴포넌트 폴더 <br>
+`routes` : 라우팅을 관리하는 폴더 <br>
+`store` : zustand 상태 관리를 위한 폴더 <br>
+`style` : css 관련 폴더 <br>
+`types` : 공용 타입 지정 폴더 <br>
 
 <br><br>
 
@@ -57,7 +57,6 @@ npm start
 -   CSS : Styled-Component
 -   상태관리 : Zustand
 
---
 <br><br>
 
 ## 4. 요구 사항 분석
