@@ -56,7 +56,7 @@ export const createCartSlice: StateCreator<CartStoreType> = (set) => ({
                         state.cartItems[index].quantity -= count
                         break
                     case "INPUT":
-                        console.log("[store] INPUT case에 들어온 count :", count)
+                        // console.log("[store] INPUT case에 들어온 count :", count)
 
                         // CartItemBox 컴포넌트에서 예외처리가 되있어 count는 1~99 사이로 들어오지만,
                         // 추후 다른 페이지에서도 수량을 변경해야될 경우 store에서 한번에 예외처리하는것이 좋을 것 같다.
@@ -75,7 +75,7 @@ export const createCartSlice: StateCreator<CartStoreType> = (set) => ({
                         break
                 }
 
-                console.log(`[store] ${productID}번 아이템 최종 상품 갯수는 ${state.cartItems[index].quantity}`)
+                // console.log(`[store] ${productID}번 아이템 최종 상품 갯수는 ${state.cartItems[index].quantity}`)
             })
         ),
 })

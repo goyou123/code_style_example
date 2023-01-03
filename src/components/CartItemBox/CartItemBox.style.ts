@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { flexCenterSpaceBetween, flexCenterAlign, defaultCheckBoxStyle } from "styles/OftenStyle"
+import { flexCenterSpaceBetween, defaultCheckBoxStyle } from "styles/OftenStyle"
 
 export const CartItemBoxLi = styled.li`
     ${({ theme }) => {

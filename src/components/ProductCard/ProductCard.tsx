@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { moneyFormat } from "lib/utils"
 import _ from "lodash"
 
-//css
+//css , icon
 import { ProductCardDiv } from "components/ProductCard/ProductCard.style"
 import { BsCartPlus } from "react-icons/bs"
 import { BsCartDash } from "react-icons/bs"
@@ -23,10 +23,9 @@ function ProductCard({ product }: IProps) {
     const cartItems = useBoundStore((state) => state.cartItems)
     const addCart = useBoundStore((state) => state.addCart)
     const removeCart = useBoundStore((state) => state.removeCart)
-    const [isCart, _setIsCart] = useState(false)
+    const [isCart, _setIsCart] = useState(false) // 해당 상품이 장바구니에 있는지 여부 -> 담기 뺴기 버튼 결정
 
     useEffect(() => {
-        // console.log(`${product.item_name}의 장바구니 여부는 ${isCart}`)
         _setIsCart(_.some(cartItems, { item_no: product.item_no }))
     }, [cartItems])
 
@@ -55,12 +54,10 @@ function ProductCard({ product }: IProps) {
                 <div className="cart-btn-wrap">
                     {isCart ? (
                         <button onClick={remove} className={"btn-remove-cart"}>
-                            {/* <span>장바구니에서 제거</span> */}
                             <BsCartDash />
                         </button>
                     ) : (
                         <button onClick={add} className={"btn-add-cart"}>
-                            {/* <span>장바구니에 추가</span> */}
                             <BsCartPlus />
                         </button>
                     )}

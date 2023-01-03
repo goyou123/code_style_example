@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { Link } from "react-router-dom"
 //css
 import { CartPageDiv } from "pages/CartPage/CartPage.style"
@@ -18,8 +18,10 @@ function CartPage() {
     const removeCart = useBoundStore((state) => state.removeCart)
     const { checkItemsArray, _setCheckItemsArray, handleAllCheck, handleSingleCheck } = useCheckBox(cartItems)
 
-    /* 선택 삭제 함수 */
-    const selectRemoveItems = () => {
+    /* 선택 삭제 함수
+     * paybox 컴포넌트가 변화하여 cartpage가 재랜더링 될때 (checkItemsArray랑 상관없이 페이지 재랜더링될때) 메모제이징 되도록 처리
+     */
+    const selectRemoveItems = useCallback(() => {
         if (checkItemsArray.length > 0) {
             if (confirm(`선택한 상품 ${checkItemsArray.length}개를 삭제하시겠습니까?`)) {
                 // store 장바구니 에서 삭제
@@ -31,7 +33,7 @@ function CartPage() {
         } else {
             alert("선택한 상품이 없습니다.")
         }
-    }
+    }, [checkItemsArray])
 
     return (
         <CartPageDiv>

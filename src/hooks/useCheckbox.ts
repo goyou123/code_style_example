@@ -1,10 +1,13 @@
 import { ChangeEvent, useState, useEffect } from "react"
+import { ProductType } from "types/main"
 
 /* @@ checkbox들을 관리해주는 커스텀 훅
  *  (filterArray === cartItems)
  *  현재는 filterArray에 cartItems형태의 배열이 들어왔을때만 사용가능하다.
+ *
  */
-const useCheckBox = (filterArray: any[]) => {
+const useCheckBox = (filterArray: ProductType[]) => {
+    // checkItemsArray 에는 체크한 상품의 item_no 가 담긴다.
     const [checkItemsArray, _setCheckItemsArray] = useState<number[]>([])
 
     useEffect(() => {

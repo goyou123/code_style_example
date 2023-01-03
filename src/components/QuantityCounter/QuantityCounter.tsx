@@ -25,7 +25,7 @@ function QuantityCounter({ product, inputs, _setInputs }: IProps) {
 
     /* input값의 변화에 따라 input값 랜더링과 store에서 수량변경을 해주는 함수 */
     const setInputAndChangeStore = (productID: number, type: string, count: number) => {
-        console.log(`${type} / ${count}`)
+        // console.log(`${type} / ${count}`)
         switch (type) {
             case "INCREASE":
                 _setInputs(inputs + count)
@@ -43,7 +43,7 @@ function QuantityCounter({ product, inputs, _setInputs }: IProps) {
                 break
 
             default:
-                console.error(`[cart] ${type} 은 지정되지 않은 타입입니다. `)
+                console.error(`[QuantityCount] ${type} 은 지정되지 않은 타입입니다. `)
         }
     }
 

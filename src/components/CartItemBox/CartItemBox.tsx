@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent } from "react"
+import React, { useEffect, useState, ChangeEvent, useMemo } from "react"
 
 //zustand
 import { useBoundStore } from "store/useBoundStore"
@@ -24,10 +24,15 @@ interface IProps {
 function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
     const cartItems = useBoundStore((state) => state.cartItems)
 
+    // input의 값이 변화했는데 store값을 건드리지 않을때 (ex. 1 -> 0 -> 1) 불필요한 계산 방지
     // store장바구니에 해당 product가 있는지 확인 후 index반환
-    const index = cartItems.findIndex((a: ProductType) => {
-        return a.item_no === product.item_no
-    })
+    const index = useMemo(() => {
+        const findIndex = cartItems.findIndex((a: ProductType) => {
+            return a.item_no === product.item_no
+        })
+
+        return findIndex
+    }, [cartItems])
 
     // 초기값이 store에 있는 해당 아이템의 수량 -> 다시 들어와도 입력해놨던 수량 유지
     const [inputs, _setInputs] = useState(Number(cartItems[index].quantity))
@@ -56,7 +61,7 @@ function CartItemBox({ product, handleSingleCheck, checkItemsArray }: IProps) {
                     <label htmlFor={`check ${PRODUCT_ID}`} />
                 </div>
                 <div className="product-img">
-                    <img src={product.detail_image_url} alt="" />
+                    <img src={product.detail_image_url} alt={product.item_name} />
                 </div>
                 <div className="product-name">
                     <h4>

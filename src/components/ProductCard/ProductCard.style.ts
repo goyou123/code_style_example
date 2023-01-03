@@ -12,6 +12,7 @@ export const ProductCardDiv = styled.div`
                 overflow: hidden;
             }
 
+            // 상품 이미지 hover 시 살짝 확대
             .product-box:hover {
                 .product-img {
                     overflow: hidden;
@@ -42,6 +43,7 @@ export const ProductCardDiv = styled.div`
                 }
             }
 
+            // 장바구니 담기 / 빼기 버튼
             .cart-btn-wrap {
                 button {
                     position: absolute;
@@ -72,6 +74,7 @@ export const ProductCardDiv = styled.div`
                     background: rgba(0, 0, 0, 0.9);
                 }
 
+                // 버튼 호버시 살짝 확대
                 button:hover {
                     svg {
                         transform: scale(1.1);

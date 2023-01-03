@@ -74,6 +74,7 @@ function PayBox({ checkItemsArray }: IProps) {
             // 예외1) 체크리스트가 비어 totalPrice가 0일 때 할인 금액도 초기화해준다.
             _setDiscountPrice(0)
         } else {
+            // 쿠폰적용가능한 상품들 금액의 총합을 계산한다.
             const sum = sumForDicountableItems()
 
             if (sum === 0) {
@@ -124,6 +125,7 @@ function PayBox({ checkItemsArray }: IProps) {
 
             if (isChecked) {
                 // 쿠폰 적용 가능한 아이템들의 금액 총합을 구해준다.
+
                 if (cartItems[i].availableCoupon !== false) {
                     //possibly undefined value 오류 해결하기 위해 타입을 정확하게 명시
                     sum = sum + cartItems[i].price * (cartItems[i].quantity as number)

@@ -20,6 +20,7 @@ function ProductsPage() {
     // 페이징 관련 state들
     const [page, _setPage] = useState(1) // 페이지 위치
     const [totalCount, _setTotalCount] = useState(productItems.length) // 데이터의 총 개수
+
     const limit = 5 // 하나의 페이지당 보여줄 아이템 갯수
 
     /* score 내림차순으로 정렬 */
@@ -34,13 +35,14 @@ function ProductsPage() {
 
     /* page 변경에 따라 5개씩 잘라 보여준다. */
     useEffect(() => {
-        const num = (page - 1) * 5
-        const showFiveItems = sortArray.slice(num, num + 5)
+        const num = (page - 1) * limit
+        const showFiveItems = sortArray.slice(num, num + limit)
         _setProductArray(showFiveItems)
     }, [page])
 
     useEffect(() => {
-        console.log(cartItems)
+        // 로그 확인용
+        // console.log(cartItems)
     }, [cartItems])
     return (
         <ProductPageDiv>

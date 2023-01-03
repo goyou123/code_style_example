@@ -24,10 +24,10 @@ export const ROUTES: RouteType[] = [
 function MainRouter() {
     return (
         <Routes>
-            <Route path="/" element={<Navigate to="/products" replace />} />
-            <Route path="*" element={<ErrorPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/" element={<Navigate to="/products" replace />} />
+            <Route path="*" element={<ErrorPage />} />
         </Routes>
     )
 }

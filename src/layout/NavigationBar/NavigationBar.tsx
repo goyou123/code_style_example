@@ -1,5 +1,4 @@
 import React from "react"
-import { RouteType } from "routes/MainRouter"
 import { Link } from "react-router-dom"
 
 //css
@@ -7,6 +6,9 @@ import { NavDiv, ContainerDiv } from "layout/NavigationBar/NagivaionBar.style"
 
 //component
 import CountNotify from "components/CountNotify/CountNotify"
+
+//type
+import { RouteType } from "routes/MainRouter"
 
 interface IProps {
     routes: RouteType[]
