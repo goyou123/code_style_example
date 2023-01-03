@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react"
+import React, { useEffect, useState, useMemo, useLayoutEffect } from "react"
 //component
 import ProductCard from "components/ProductCard/ProductCard"
 import Paging from "components/Paging/Paging"
@@ -33,8 +33,12 @@ function ProductsPage() {
         _setPage(page)
     }
 
-    /* page 변경에 따라 5개씩 잘라 보여준다. */
-    useEffect(() => {
+    /* page 변경에 따라 5개씩 잘라 보여준다.
+     * 페이지 진입 시 데이터가 12개 보였다가 -> 5개로 변화하는 화면 깜빡임 문제를 해결하기 위해
+     * 동기적으로 작동하는 useLayoutEffect를 사용함 (내부코드 실행 후 paint작업)
+     * 로직이 복잡할 경우에는 사용자가 레이아웃을 보기까지 오래걸리므로 지양해야 함
+     */
+    useLayoutEffect(() => {
         const num = (page - 1) * limit
         const showFiveItems = sortArray.slice(num, num + limit)
         _setProductArray(showFiveItems)
