@@ -11,6 +11,7 @@ import { useBoundStore } from "store/useBoundStore"
 
 //data
 import { coupons } from "lib/DummyData"
+import { log } from "console"
 
 interface IProps {
     checkItemsArray: number[]
@@ -83,8 +84,6 @@ function PayBox({ checkItemsArray }: IProps) {
                 _setIsDiscount(false)
                 _setSelectValue("DEFAULT")
             } else {
-                // console.log(`${selectValue} / 쿠폰적용가능한 아이템들의 총합 : ${sum} `)
-
                 _setIsDiscount(true)
                 switch (selectValue) {
                     case "DEFAULT":
@@ -92,7 +91,14 @@ function PayBox({ checkItemsArray }: IProps) {
                         break
 
                     case "amount":
-                        _setDiscountPrice(10000)
+                        if (sum > 10000) {
+                            _setDiscountPrice(10000)
+                        } else {
+                            alert("10,000원 이하 상품에는 해당 쿠폰을 적용하실 수 없습니다!")
+                            _setDiscountPrice(0)
+                            _setSelectValue("DEFAULT")
+                        }
+
                         break
 
                     case "rate":

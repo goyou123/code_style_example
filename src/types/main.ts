@@ -2,7 +2,7 @@
 export interface ProductType {
     item_no: number
     item_name: string
-    detail_image_url: string
+    detail_image_url: string | undefined
     price: number
     score: number
     availableCoupon?: boolean

@@ -19,7 +19,7 @@ function NavigationBar({ routes }: IProps) {
         <NavDiv>
             <ContainerDiv>
                 <h1>
-                    <Link to={"/"}>29CM</Link>
+                    <Link to={"/"}>미니 쇼핑몰</Link>
                 </h1>
                 <div>
                     <ul>

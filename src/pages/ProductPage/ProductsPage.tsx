@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useLayoutEffect } from "react"
+import React, { useState, useMemo, useLayoutEffect } from "react"
 //component
 import ProductCard from "components/ProductCard/ProductCard"
 import Paging from "components/Paging/Paging"
@@ -9,18 +9,12 @@ import { ProductPageDiv, Container } from "pages/ProductPage/ProductPage.style"
 //data
 import { productItems } from "lib/DummyData"
 
-//zustand
-import { useBoundStore } from "store/useBoundStore"
-
 function ProductsPage() {
-    const cartItems = useBoundStore((state) => state.cartItems)
-
     const [productArray, _setProductArray] = useState(productItems) // 보여줄 상품 리스트
 
     // 페이징 관련 state들
     const [page, _setPage] = useState(1) // 페이지 위치
-    const [totalCount, _setTotalCount] = useState(productItems.length) // 데이터의 총 개수
-
+    const totalCount = productItems.length // 데이터의 총 개수
     const limit = 5 // 하나의 페이지당 보여줄 아이템 갯수
 
     /* score 내림차순으로 정렬 */
@@ -44,10 +38,6 @@ function ProductsPage() {
         _setProductArray(showFiveItems)
     }, [page])
 
-    useEffect(() => {
-        // 로그 확인용
-        // console.log(cartItems)
-    }, [cartItems])
     return (
         <ProductPageDiv>
             <div>
