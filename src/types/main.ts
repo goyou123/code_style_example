@@ -4,7 +4,7 @@ export interface ProductType {
     item_name: string
     detail_image_url: string | undefined
     price: number
-    score: number
-    availableCoupon?: boolean
+    score: number // 상품의 정렬 순서를 결정하는 값
+    availableCoupon?: boolean // 쿠폰적용가능여부
     quantity?: number
 }

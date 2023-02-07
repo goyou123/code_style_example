@@ -19,7 +19,9 @@ function ProductsPage() {
 
     /* score 내림차순으로 정렬 */
     const sortArray = useMemo(() => {
-        return productItems.sort((a, b) => b.score - a.score)
+        // 불변성 유지를 위해 spread를 사용하여 원본배열 복사해서 사용
+        const result = [...productItems.sort((a, b) => b.score - a.score)]
+        return result
     }, [])
 
     /* 현재 페이지 변경 핸들러 */
